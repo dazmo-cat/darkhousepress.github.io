@@ -7,35 +7,51 @@
     <style>
         body {
             background-color: #0d0d0d;
-            color: #00ff41; /* Classic Matrix/Terminal Green */
+            color: #00ff41; 
             font-family: 'Courier New', Courier, monospace;
             display: flex;
-            flex-direction: column;
             align-items: center;
             justify-content: center;
             height: 100vh;
             margin: 0;
             text-transform: uppercase;
+            overflow: hidden; /* Prevents scrollbars if the logo is big */
         }
+
         .container {
-            border: 1px solid #333;
+            position: relative; /* This keeps the logo pinned to the center of the text */
             padding: 40px;
             max-width: 600px;
             text-align: center;
+            z-index: 2; /* Ensures text stays on top */
         }
-        h1 { font-size: 1.5rem; letter-spacing: 5px; color: #fff; }
+
+        .logo {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%); /* This perfectly centers it */
+            width: 400px;  /* Adjust this size to fit your logo best */
+            opacity: 0.15; /* Makes it look like a subtle watermark */
+            z-index: -1;   /* Puts it behind the text */
+            pointer-events: none; /* Allows you to click "through" the logo */
+        }
+
+        h1 { font-size: 1.5rem; letter-spacing: 5px; color: #fff; margin: 0; }
         p { font-size: 0.9rem; line-height: 1.6; color: #888; }
         .tagline { color: #00ff41; margin-top: 20px; font-weight: bold; }
-        .logo { font-size: 3rem; margin-bottom: 20px; }
     </style>
 </head>
 <body>
+
     <div class="container">
-       <img class="logo" src="darkhouselogo1.svg" alt="Darkhouse Press Logo">
+        <img class="logo" src="darkhouselogo1.svg" alt="Darkhouse Press Logo">
+        
         <h1>DARKHOUSE PRESS</h1>
         <p>The future is fragmented.</p>
         <div class="tagline">FIGHT THE POWER OR SERVE THE SYSTEM.</div>
         <p style="margin-top: 50px; font-size: 0.7rem;">[ STATUS: 90-SECOND ANTHOLOGY: DUAL CORE - PRINTED ]</p>
     </div>
+
 </body>
 </html>
