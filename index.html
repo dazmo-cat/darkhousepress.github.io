@@ -24,11 +24,8 @@
             top: 50%;
             left: 50%;
             transform: translate(-50%, -50%);
-            
-            /* Increased to accommodate the new status lines */
             width: 95vw; 
             max-width: 850px; 
-            
             filter: invert(1) brightness(1.2); 
             opacity: 0.1; 
             z-index: 1; 
@@ -44,11 +41,23 @@
         }
 
         h1 { font-size: 1.5rem; letter-spacing: 5px; color: #fff; margin: 0; }
-        p { font-size: 0.9rem; line-height: 1.6; color: #888; }
-        .tagline { color: #00ff41; margin-top: 20px; font-weight: bold; }
         
-        /* Updated tagliner to yellow for the "What's Next" hook */
-        .tagliner { color: #FFFF00; margin-top: 10px; font-style: italic; font-weight: bold; }
+        /* Synced the p tag and tagline to match in size and color */
+        p, .tagline { 
+            font-size: 0.9rem; 
+            line-height: 1.6; 
+            color: #888; 
+            margin: 5px 0; /* Tightened the vertical gap between the two lines */
+        }
+
+        /* Keep the Yellow hook prominent */
+        .tagliner { 
+            color: #FFFF00; 
+            margin-top: 20px; 
+            font-style: italic; 
+            font-weight: bold; 
+            font-size: 1rem; /* Keeping this slightly larger for impact */
+        }
     </style>
 </head>
 <body>
@@ -67,7 +76,7 @@
                target="_blank" 
                rel="noopener noreferrer" 
                style="color: #00FFFF; text-decoration: none; font-weight: bold;">
-                [ STATUS: 90-SECOND ANTHOLOGY: DUAL CORE - PRINTED ]
+                [ STATUS: DUAL CORE - PRINTED ]
             </a>
         </p>
 
@@ -76,7 +85,7 @@
                target="_blank" 
                rel="noopener noreferrer" 
                style="color: #39ff14; text-decoration: none; font-weight: bold;">
-                [ STATUS: 90-SECOND ANTHOLOGY: RESISTOR - PRINTED ]
+                [ STATUS: RESISTOR - PRINTED ]
             </a>
         </p>
     </div>
