@@ -16,22 +16,22 @@
             margin: 0;
             text-transform: uppercase;
             overflow: hidden; 
-            position: relative; /* This is key for the logo to use the whole screen */
+            position: relative;
         }
 
         .logo {
             position: absolute;
-            /* These coordinates now apply to the whole screen */
             top: 50%;
             left: 50%;
             transform: translate(-50%, -50%);
             
-            width: 80vw; /* Scales with screen width (80% of viewport) */
-            max-width: 600px; /* Won't get ridiculously huge on desktop */
+            /* Increased to accommodate the new status lines */
+            width: 95vw; 
+            max-width: 850px; 
             
             filter: invert(1) brightness(1.2); 
             opacity: 0.1; 
-            z-index: 1; /* Puts it behind the text container */
+            z-index: 1; 
             pointer-events: none;
         }
 
@@ -40,38 +40,45 @@
             padding: 40px;
             max-width: 600px;
             text-align: center;
-            z-index: 10; /* Ensures text is definitely on top layer */
+            z-index: 10;
         }
 
         h1 { font-size: 1.5rem; letter-spacing: 5px; color: #fff; margin: 0; }
         p { font-size: 0.9rem; line-height: 1.6; color: #888; }
         .tagline { color: #00ff41; margin-top: 20px; font-weight: bold; }
-        .tagliner { color: #00FFFF; margin-top: 10px; font-style: italic;}
+        
+        /* Updated tagliner to yellow for the "What's Next" hook */
+        .tagliner { color: #FFFF00; margin-top: 10px; font-style: italic; font-weight: bold; }
     </style>
 </head>
 <body>
 
     <img class="logo" src="darkhouselogo1.svg" alt="Darkhouse Press Logo">
-
+    
     <div class="container">
         <h1>DARKHOUSE PRESS</h1>
         <p>The future is fragmented.</p>
         <div class="tagline">FIGHT THE POWER OR SERVE THE SYSTEM.</div>
-        <div class="tagliner">Resistor is here</div>
-       <p style="margin-top: 50px; font-size: 0.7rem;">
-  <a href="https://amazon.com/author/darkhousepress" 
-     target="_blank" 
-     rel="noopener noreferrer" 
-     style="color: #008080; text-decoration: none; font-weight: bold;">
-    [ STATUS: 90-SECOND ANTHOLOGY: DUAL CORE - PRINTED ]
-  </a>
-</p>
-<p style="margin-top: 50px; font-size: 0.7rem;">
-  <a href="https://amazon.com/author/darkhousepress" 
-     target="_blank" 
-     rel="noopener noreferrer" 
-     style="color: #008080; text-decoration: none; font-weight: bold;">[ STATUS: 90-SECOND ANTHOLOGY: RESISTOR - PRINTED ]</a>
-  </p>
+        
+        <div class="tagliner">What's Next?</div>
+
+        <p style="margin-top: 50px; font-size: 0.7rem;">
+            <a href="https://amazon.com/author/darkhousepress" 
+               target="_blank" 
+               rel="noopener noreferrer" 
+               style="color: #00FFFF; text-decoration: none; font-weight: bold;">
+                [ STATUS: 90-SECOND ANTHOLOGY: DUAL CORE - PRINTED ]
+            </a>
+        </p>
+
+        <p style="margin-top: 20px; font-size: 0.7rem;">
+            <a href="https://amazon.com/author/darkhousepress" 
+               target="_blank" 
+               rel="noopener noreferrer" 
+               style="color: #39ff14; text-decoration: none; font-weight: bold;">
+                [ STATUS: 90-SECOND ANTHOLOGY: RESISTOR - PRINTED ]
+            </a>
+        </p>
     </div>
 
 </body>
