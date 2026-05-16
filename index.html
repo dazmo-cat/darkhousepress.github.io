@@ -42,21 +42,58 @@
 
         h1 { font-size: 1.5rem; letter-spacing: 5px; color: #fff; margin: 0; }
         
-        /* Synced the p tag and tagline to match in size and color */
-        p, .tagline { 
+        p, .tagline, .sub-tagline { 
             font-size: 0.9rem; 
             line-height: 1.6; 
             color: #888; 
-            margin: 5px 0; /* Tightened the vertical gap between the two lines */
+            margin: 5px 0; 
         }
 
-        /* Keep the Yellow hook prominent */
         .tagliner { 
             color: #FFFF00; 
             margin-top: 20px; 
             font-style: italic; 
             font-weight: bold; 
-            font-size: 1rem; /* Keeping this slightly larger for impact */
+            font-size: 1rem; 
+        }
+
+        /* NIXIE TUBE VISITOR COUNTER STYLES */
+        .counter-wrapper {
+            margin-top: 50px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .counter-label {
+            font-size: 0.6rem;
+            color: #444;
+            letter-spacing: 2px;
+        }
+
+        .nixie-display {
+            display: inline-flex;
+            background: #050505;
+            padding: 6px 12px;
+            border: 1px solid #222;
+            border-radius: 4px;
+            box-shadow: inset 0 0 10px rgba(0,0,0,0.9);
+        }
+
+        .nixie-digit {
+            background: #141414;
+            color: #ff5500; /* Edison neon amber/orange glow */
+            font-family: 'Courier New', Courier, monospace;
+            font-size: 1.2rem;
+            font-weight: bold;
+            padding: 4px 6px;
+            margin: 0 2px;
+            border-radius: 2px;
+            border: 1px solid #1a1a1a;
+            /* Glowing filament effects */
+            text-shadow: 0 0 4px rgba(255, 85, 0, 0.7), 0 0 10px rgba(255, 85, 0, 0.4);
+            box-shadow: inset 0 0 4px rgba(255, 85, 0, 0.15), 0 2px 4px rgba(0,0,0,0.5);
         }
     </style>
 </head>
@@ -68,9 +105,13 @@
         <h1>DARKHOUSE PRESS</h1>
         <p>The future is fragmented.</p>
         <div class="tagline">FIGHT THE POWER OR SERVE THE SYSTEM.</div>
+        <div class="sub-tagline">DISCHARGE THE ORDINARY.</div>
         
-        <div class="tagliner"><a href="https://carcosa.vip" style="color: #f1c40f; text-decoration: none; font-weight: bold;">Follow The Yellow Fragment</a></div>
+        <div class="tagliner">
+            <a href="https://carcosa.vip" style="color: #f1c40f; text-decoration: none; font-weight: bold;">Follow The Yellow Fragment</a>
+        </div>
 
+        <!-- STATUS SECTIONS -->
         <p style="margin-top: 50px; font-size: 0.7rem;">
             <a href="https://amazon.com/author/darkhousepress" 
                target="_blank" 
@@ -88,7 +129,62 @@
                 [ STATUS: THE 90-SECOND ANTHOLOGY: RESISTOR - PRINTED ]
             </a>
         </p>
+
+        <p style="margin-top: 20px; font-size: 0.7rem;">
+            <a href="https://amazon.com/author/darkhousepress" 
+               target="_blank" 
+               rel="noopener noreferrer" 
+               style="color: #0055ff; text-decoration: none; font-weight: bold;">
+                [ STATUS: THE 90-SECOND ANTHOLOGY: CAPACITOR - PRINTED ]
+            </a>
+        </p>
+
+        <!-- VISIBLE NIXIE TRACKER -->
+        <div class="counter-wrapper">
+            <div class="counter-label">[ SYSTEM_LOGINS ]</div>
+            <div class="nixie-display" id="nixie-counter">
+                <!-- Digits will dynamically load here, falling back to 000000 if loading -->
+                <span class="nixie-digit">0</span><span class="nixie-digit">0</span><span class="nixie-digit">0</span><span class="nixie-digit">0</span><span class="nixie-digit">0</span><span class="nixie-digit">0</span>
+            </div>
+        </div>
     </div>
+
+    <!-- BACKGROUND VISITOR API SCRIPT -->
+    <script>
+        async function getHitCount() {
+            // Using hits.seeyoufarm.com backend just to get raw JSON numbers for your domain
+            const url = 'https://hits.seeyoufarm.com/api/v1/hit?url=https://darkhousepress.com';
+            
+            try {
+                const response = await fetch(url);
+                if (!response.ok) throw new Error('Network response failure');
+                const data = await response.json();
+                
+                // Extracting total views from the API response
+                const count = data.value || 0;
+                
+                // Pad the number to always show 6 digits (e.g., 000042)
+                const paddedCount = String(count).padStart(6, '0');
+                
+                // Target the UI counter
+                const counterDisplay = document.getElementById('nixie-counter');
+                counterDisplay.innerHTML = ''; // Clear defaults
+                
+                // Build individual glowing Nixie filaments for each digit
+                for (let char of paddedCount) {
+                    const span = document.createElement('span');
+                    span.className = 'nixie-digit';
+                    span.textContent = char;
+                    counterDisplay.appendChild(span);
+                }
+            } catch (error) {
+                console.log('Counter tracking bypassed or blocked by privacy extensions.');
+            }
+        }
+
+        // Initialize on page boot
+        getHitCount();
+    </script>
 
 </body>
 </html>
